@@ -14,7 +14,7 @@ using std::ostream;
 class Bureaucrat
 {
 private:
-	string name;
+	string	name;
 	int		grade;
 public:
 	Bureaucrat();

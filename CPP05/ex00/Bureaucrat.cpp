@@ -12,6 +12,12 @@ Bureaucrat::Bureaucrat(string _name) : name(_name), grade(150)
 
 Bureaucrat::Bureaucrat(string _name, int _grade) : name(_name)
 {
+	cout << _grade << endl;
+	if(_grade < 1){
+		throw GradeToHighException();
+	}
+	else if(_grade > 150)
+		throw GradeToLowException();
 	setGrade(_grade);
 	cout << "Name & Grade Constructor Called" << endl;
 }
@@ -40,7 +46,7 @@ string Bureaucrat::getName() const
 void	Bureaucrat::decrement()
 {
 	if(grade > 150)
-		throw GradeToHighException();
+		throw GradeToLowException();
 	else
 		grade++;
 }
@@ -48,7 +54,7 @@ void	Bureaucrat::decrement()
 void	Bureaucrat::increment()
 {
 	if(grade < 1)
-			throw GradeToLowException();
+		throw GradeToHighException();
 		else
 			grade--;
 }
