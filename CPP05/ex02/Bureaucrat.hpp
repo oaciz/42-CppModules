@@ -4,7 +4,9 @@
 #include <iostream>
 #include <exception>
 #include <string>
+#include "AForm.hpp"
 
+class AForm;
 using std::string;
 using std::cout;
 using std::endl;
@@ -24,7 +26,7 @@ public:
 	Bureaucrat& operator=(const Bureaucrat &var);
 	~Bureaucrat();
 
-	class GradeToHighException : public exception
+	class GradeTooHighException : public exception
 	{
 	public:
 		const char *what() const throw()
@@ -32,7 +34,7 @@ public:
 			return "Grade To High";
 		}	
 	};
-	class GradeToLowException : public exception
+	class GradeTooLowException : public exception
 	{
 	public:
 		const char *what() const throw()
@@ -46,6 +48,8 @@ public:
 	string	getName() const;
 	void	increment();
 	void	decrement();
+	void 	signForm(const AForm &var) const;
+	void	executeForm(const AForm &form);
 };
 
 ostream &operator<<(ostream &out, const Bureaucrat& var);

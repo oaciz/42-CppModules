@@ -2,17 +2,17 @@
 
 static int randomnumber = 0;
 
-RobotmyRequestForm::RobotmyRequestForm():Aform("RobotmyRequestForm", 72, 45), target("Default")
+RobotmyRequestForm::RobotmyRequestForm():AForm("RobotmyRequestForm", 72, 45), target("Default")
 {
 	std::cout << "Default Const Called" << std::endl;
 }
 
-RobotmyRequestForm::RobotmyRequestForm(std::string _target):target(_target), Aform("RobotmyRequestForm", 72, 45)
+RobotmyRequestForm::RobotmyRequestForm(std::string _target): AForm("RobotmyRequestForm", 72, 45), target(_target)
 {
 	std::cout << "Target Const Called" << std::endl;
 }
 
-RobotmyRequestForm::RobotmyRequestForm(const RobotmyRequestForm &var):target(var.target), Aform("RobotmyRequestForm", 72, 45)
+RobotmyRequestForm::RobotmyRequestForm(const RobotmyRequestForm &var):AForm("RobotmyRequestForm", 72, 45),target(var.target)
 {
 	std::cout << "Copy Const Called" << std::endl;
 	*this = var;
@@ -40,7 +40,7 @@ std::string RobotmyRequestForm::getTarget() const
 void	RobotmyRequestForm::execute(const Bureaucrat &executor) const
 {
 	if((int)executor.getGrade() > this->getExec())
-		throw (Bureaucrat::GradeToLowException());
+		throw (Bureaucrat::GradeTooLowException());
 	else if(randomnumber++ % 2 == 0)
 		std::cout << "UrrrrrrrrrU" << this->getTarget() << "Do robotic sound" << std::endl;
 	else

@@ -5,12 +5,12 @@
 #include <iostream>
 #include <cstdlib>
 #include "Bureaucrat.hpp"
-#include "Aform.hpp"
+#include "AForm.hpp"
 
 class Bureaucrat;
-class Aform;
+class AForm;
 
-class RobotmyRequestForm:public Aform
+class RobotmyRequestForm:public AForm
 {
 private:
 	const std::string target;

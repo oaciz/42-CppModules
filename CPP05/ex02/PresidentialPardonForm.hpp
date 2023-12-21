@@ -1,13 +1,13 @@
 #include <string>
 #include <iostream>
 #include "Bureaucrat.hpp"
-#include "Aform.hpp"
+#include "AForm.hpp"
 
 using std::cout;
 using std::endl;
 using std::string;
 
-class PresidentialPardonForm : public Aform
+class PresidentialPardonForm : public AForm
 {
 private:
 	const string target;

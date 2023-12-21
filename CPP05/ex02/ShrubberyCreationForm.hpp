@@ -1,39 +1,31 @@
-#pragma once
+#ifndef SHRUBBERYCREATIONFORM_H
+#define SHRUBBERYCREATIONFORM_H
 
-#include "Aform.hpp"
+# include <string>
+# include <iostream>
+# include <fstream>
+# include "AForm.hpp"
+# include "Bureaucrat.hpp"
 
-class ShrubberyCreationForm: public Aform
+class Bureaucrat;
+
+class ShrubberyCreationForm: public AForm
 {
-	public:
+private:
+	const std::string _target;
+public:
 	ShrubberyCreationForm();
-	ShrubberyCreationForm(const ShrubberyCreationForm &);
-	const ShrubberyCreationForm& operator=(const ShrubberyCreationForm &);
+	ShrubberyCreationForm(const std::string target_);
+	ShrubberyCreationForm(const ShrubberyCreationForm& var);
+	~ShrubberyCreationForm();
 
-	
+	ShrubberyCreationForm& operator=(const ShrubberyCreationForm& var);
+
+	void execute(Bureaucrat const &executor) const;
+	std::string getTarget() const;
 };
 
-            .        +          .      .          .
-     .            _        .                    .
-  ,              /;-._,-.____        ,-----.__
- ((        .    (_:#::_.:::. `-._   /:, /-._, `._,
-  `                 \   _|`"=:_::.`.);  \ __/ /
-                      ,    `./  \:. `.   )==-'  .
-    .      ., ,-=-.  ,\, +#./`   \:.  / /           .
-.           \/:/`-' , ,\ '` ` `   ): , /_  -o
-       .    /:+- - + +- : :- + + -:'  /(o-) \)     .
-  .      ,=':  \    ` `/` ' , , ,:' `'--".--"---._/`7
-   `.   (    \: \,-._` ` + '\, ,"   _,--._,---":.__/
-              \:  `  X` _| _,\/'   .-'
-.               ":._:`\____  /:'  /      .           .
-                    \::.  :\/:'  /              +
-   .                 `.:.  /:'  }      .
-           .           ):_(:;   \           .
-                      /:. _/ ,  |
-                   . (|::.     ,`                  .
-     .                |::.    {\
-                      |::.\  \ `.
-                      |:::(\    |
-              O       |:::/{ }  |                  (o
-               )  ___/#\::`/ (O "==._____   O, (O  /`
-          ~~~w/w~"~~,\` `:/,-(~`"~~~~~~~~"~o~\~/~w|/~
-dew   ~~~~~~~~~~~~~~~~~~~~~~~\\W~~~~~~~~~~~~\|/~~
+std::ostream &operator<<(std::ostream &out, ShrubberyCreationForm &var);
+
+
+#endif

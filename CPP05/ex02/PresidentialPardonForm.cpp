@@ -1,11 +1,11 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm():Aform("PresidentialPardonForm", 25, 5), target("Default")
+PresidentialPardonForm::PresidentialPardonForm():AForm("PresidentialPardonForm", 25, 5), target("Default")
 {
 	cout << "Presi Default Const Called" << endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(string _target) : Aform("PresidentialPardonForm", 25, 5), target(_target)
+PresidentialPardonForm::PresidentialPardonForm(string _target) : AForm("PresidentialPardonForm", 25, 5), target(_target)
 {
 	cout << "Presi Target Const Called" << endl;
 }
@@ -13,6 +13,11 @@ PresidentialPardonForm::PresidentialPardonForm(string _target) : Aform("Presiden
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm &var)
 {
 	cout << "PresidentialPardonForm Copy Const Called" << var.getName() << " into " << this->getName();
+}
+
+PresidentialPardonForm::~PresidentialPardonForm()
+{
+	std::cout << "PresidentialPardonForm Deconstructor " << this->getName() << " called" << std::endl;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &var)
@@ -36,4 +41,14 @@ std::ostream	&operator<<(std::ostream &out, PresidentialPardonForm &var)
 	  "\n\tis signed:\t" << var.isSigned() <<
 	  std::endl;
 	return (out);
+}
+
+void PresidentialPardonForm::execute(const Bureaucrat &executor) const {
+	if ((int)executor.getGrade() > this->getExec())
+		throw (Bureaucrat::GradeTooLowException());
+	else if (this->isSigned() == false)
+		throw (AForm::GradeTooSignedException());
+	else
+		std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+
 }
