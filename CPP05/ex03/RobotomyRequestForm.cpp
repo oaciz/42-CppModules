@@ -1,18 +1,31 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotmyRequestForm::RobotmyRequestForm():AForm("RobotmyRequestForm", 72, 45), target("Default"){}
+static int randomnumber = 0;
 
-RobotmyRequestForm::RobotmyRequestForm(std::string _target): AForm("RobotmyRequestForm", 72, 45), target(_target){}
-
-RobotmyRequestForm::RobotmyRequestForm(const RobotmyRequestForm &var):AForm("RobotmyRequestForm", 72, 45),target(var.target)
+RobotmyRequestForm::RobotmyRequestForm():AForm("RobotmyRequestForm", 72, 45), target("Default")
 {
+	std::cout << "Default Const Called" << std::endl;
+}
+
+RobotmyRequestForm::RobotmyRequestForm(std::string _target): AForm("RobotmyRequestForm", 0, 45), target(_target)
+{
+	std::cout << "Target Const Called" << std::endl;
+}
+
+RobotmyRequestForm::RobotmyRequestForm(const RobotmyRequestForm &var):AForm("RobotmyRequestForm", 0, 45),target(var.target)
+{
+	std::cout << "Copy Const Called" << std::endl;
 	*this = var;
 }
 
-RobotmyRequestForm::~RobotmyRequestForm(){}
+RobotmyRequestForm::~RobotmyRequestForm()
+{
+	std::cout << "Roboto Deconst " << this->getName() << " called " << std::endl;
+}
 
 RobotmyRequestForm &RobotmyRequestForm::operator=(const RobotmyRequestForm &var)
 {
+	std::cout << "RobotmyRequestForm Assignation operator called" << std::endl;
 	if(this != &var)
 		*this = var;
 	return *this;
@@ -26,10 +39,9 @@ std::string RobotmyRequestForm::getTarget() const
 
 void	RobotmyRequestForm::execute(const Bureaucrat &executor) const
 {
-	srand(time(0));
 	if((int)executor.getGrade() > this->getExec())
 		throw (Bureaucrat::GradeTooLowException());
-	else if(rand() % 2 == 0)
+	else if(randomnumber++ % 2 == 0)
 		std::cout << "UrrrrrrrrrU" << this->getTarget() << "Do robotic sound" << std::endl;
 	else
 		std::cout << "Robotomy BOOOOOOOOMMMM!!!" << std::endl;

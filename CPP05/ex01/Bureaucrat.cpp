@@ -1,61 +1,48 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : name("ÖMER"),grade(150)
-{
-	cout << "Default Constructor Called" << endl;
-}
+Bureaucrat::Bureaucrat() : name("Omar"),grade(150){}
 
-Bureaucrat::Bureaucrat(string _name) : name(_name), grade(150)
-{
-	cout << "Name Constructor Called" << endl;
-}
+Bureaucrat::Bureaucrat(std::string _name) : name(_name), grade(150){}
 
-Bureaucrat::Bureaucrat(string _name, int _grade) : name(_name)
+Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name)
 {
 	setGrade(_grade);
-	cout << "Name & Grade Constructor Called" << endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &var)
 {
 	*this = var;
-	cout << "Copy Const Called" << endl;
 }
 
-Bureaucrat::~Bureaucrat()
-{
-	cout << "Deconst Called" << endl;
-}
+Bureaucrat::~Bureaucrat(){}
 
 int	Bureaucrat::getGrade() const
 {
 	return grade;
 }
 
-string Bureaucrat::getName() const
+std::string Bureaucrat::getName() const
 {
 	return name;
 }
 
 void	Bureaucrat::decrement()
 {
-	if(grade > 150)
-		throw GradeToHighException();
-	else
-		grade++;
+	this->setGrade(--(this->grade));
 }
 
 void	Bureaucrat::increment()
 {
-	if(grade < 1)
-			throw GradeToLowException();
-		else
-			grade--;
+	this->setGrade(++(this->grade));
 }
 
 void	Bureaucrat::setGrade(int _grade)
 {
-	grade = _grade;
+	if (_grade < 1)
+		throw GradeTooHighException();
+	else if (grade > 150)
+		throw GradeTooLowException();
+	this->grade = _grade;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &var) {
@@ -63,9 +50,14 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &var) {
 	return (*this);
 }
 
-void	Bureaucrat::signForm(const Form &var) const
+void	Bureaucrat::signForm(Form &form) const
 {
-	var.beSigned(*this);
+	if (form.isSigned())
+		std::cout << this->getName() << " signed "<< form.getName() << std::endl;
+	else if (this->grade < form.getRequireToSign())
+		form.beSigned(*this);
+	else
+		std::cout << this->getName() << " could'nt sign "<< form.getName() << " because " << "Bureaucrat's Grade To Low" << std::endl;
 }
 std::ostream &operator<<(std::ostream &out , const Bureaucrat& var){
 	out << "Bureaucrat name => " << var.getName() << " | his grade => " << var.getGrade();

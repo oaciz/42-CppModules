@@ -8,17 +8,17 @@
 int main()
 {
 	try{
-		Bureaucrat a("Bob", 600);
-		ShrubberyCreationForm form("Form");
-		RobotmyRequestForm asd("Form2");
-		PresidentialPardonForm abc("Form3");
+		Bureaucrat a("Bob", 73);
+		//ShrubberyCreationForm form("Form");
+		 RobotmyRequestForm asd("Form2");
+		// PresidentialPardonForm abc("Form3");
 
-		a.signForm(abc);
-		a.executeForm(abc);
+		//a.signForm(abc);
+		//a.executeForm(abc);
+		//a.signForm(asd);
+		//a.executeForm(asd);
 		a.signForm(asd);
-		a.executeForm(asd);
-		a.signForm(form);
-		a.executeForm(form);
+		asd.execute(a);
 	}
 	catch(std::exception& e) {
 		std::cout << e.what() << std::endl;

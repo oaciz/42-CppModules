@@ -1,8 +1,14 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm():AForm("PresidentialPardonForm", 25, 5), target("Default"){}
+PresidentialPardonForm::PresidentialPardonForm():AForm("PresidentialPardonForm", 25, 5), target("Default")
+{
+	std::cout << "Presi Default Const Called" << std::endl;
+}
 
-PresidentialPardonForm::PresidentialPardonForm(std::string _target) : AForm("PresidentialPardonForm", 25, 5), target(_target){}
+PresidentialPardonForm::PresidentialPardonForm(std::string _target) : AForm("PresidentialPardonForm", 25, 5), target(_target)
+{
+	std::cout << "Presi Target Const Called" << std::endl;
+}
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm &var)
 {

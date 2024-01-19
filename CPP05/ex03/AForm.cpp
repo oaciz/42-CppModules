@@ -1,11 +1,11 @@
 #include "AForm.hpp"
 
-AForm::AForm() : name("Default Name"), isSign(false), requireToSign(150), execToSign(150)
+AForm::AForm() : name("Default Name"), isSign(false), requireToSign(25), execToSign(20)
 {
 	std::cout << "Const Called" << std::endl;
 }
 
-AForm::AForm(std::string _name) : name(_name), isSign(false), requireToSign(150), execToSign(150)
+AForm::AForm(std::string _name) : name(_name), isSign(false), requireToSign(25), execToSign(20)
 {
 	std::cout << "Name const Called" << std::endl;
 }
@@ -61,7 +61,6 @@ bool	AForm::isSigned() const
 
 void AForm::beSigned(const Bureaucrat& var) const
 {
-
 	if(var.getGrade() <= this->requireToSign)
 	{
 		this->isSign = true;
@@ -69,7 +68,6 @@ void AForm::beSigned(const Bureaucrat& var) const
 	}
 	else
 	{
-
 		std::cout << var.getName() << " Couldn't sign " << this->name << " Because To Low Then Sign Grade" << std::endl;
 		throw GradeTooLowException();
 	}

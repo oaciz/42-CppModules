@@ -4,6 +4,9 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 
+using std::string;
+using std::endl;
+
 class Bureaucrat;
 
 class AForm
@@ -14,7 +17,7 @@ private:
 	int			requireToSign;
 	int			execToSign;
 public:
-	class GradeTooHighException : public std::exception
+	class GradeTooHighException:public std::exception
 	{
 		public:
 			const char* what() const throw()

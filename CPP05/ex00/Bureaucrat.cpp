@@ -2,35 +2,34 @@
 
 Bureaucrat::Bureaucrat() : name("ÖMER"),grade(150)
 {
-	cout << "Default Constructor Called" << endl;
+	std::cout << "Default Constructor Called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(string _name) : name(_name), grade(150)
+Bureaucrat::Bureaucrat(std::string _name) : name(_name), grade(150)
 {
-	cout << "Name Constructor Called" << endl;
+	std::cout << "Name Constructor Called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(string _name, int _grade) : name(_name)
+Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name)
 {
-	cout << _grade << endl;
-	if(_grade < 1){
-		throw GradeToHighException();
+	if(_grade <= 1){
+		throw GradeTooHighException();
 	}
-	else if(_grade > 150)
-		throw GradeToLowException();
+	else if(_grade >= 150)
+		throw GradeTooLowException();
 	setGrade(_grade);
-	cout << "Name & Grade Constructor Called" << endl;
+	std::cout << "Name & Grade Constructor Called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &var)
 {
 	*this = var;
-	cout << "Copy Const Called" << endl;
+	std::cout << "Copy Const Called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	cout << "Deconst Called" << endl;
+	std::cout << "Deconst Called" << std::endl;
 }
 
 int	Bureaucrat::getGrade() const
@@ -38,7 +37,7 @@ int	Bureaucrat::getGrade() const
 	return grade;
 }
 
-string Bureaucrat::getName() const
+std::string Bureaucrat::getName() const
 {
 	return name;
 }
@@ -46,7 +45,7 @@ string Bureaucrat::getName() const
 void	Bureaucrat::decrement()
 {
 	if(grade > 150)
-		throw GradeToLowException();
+		throw GradeTooLowException();
 	else
 		grade++;
 }
@@ -54,7 +53,7 @@ void	Bureaucrat::decrement()
 void	Bureaucrat::increment()
 {
 	if(grade < 1)
-		throw GradeToHighException();
+		throw GradeTooHighException();
 		else
 			grade--;
 }

@@ -7,6 +7,11 @@
 #include "AForm.hpp"
 
 class AForm;
+using std::string;
+using std::cout;
+using std::endl;
+using std::exception;
+using std::ostream;
 
 class Bureaucrat
 {

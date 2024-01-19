@@ -5,7 +5,7 @@ int	main()
 {
 	try
 	{
-		Bureaucrat omer("ömer", 32);
+		Bureaucrat omer("ömer", 10);
 
 		std::cout << omer << std::endl;
 		omer.decrement();

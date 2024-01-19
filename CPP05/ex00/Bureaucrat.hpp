@@ -5,26 +5,21 @@
 #include <exception>
 #include <string>
 
-using std::string;
-using std::cout;
-using std::endl;
-using std::exception;
-using std::ostream;
 
 class Bureaucrat
 {
 private:
-	string name;
+	std::string name;
 	int		grade;
 public:
 	Bureaucrat();
-	Bureaucrat(string _name);
-	Bureaucrat(string _name, int _grade);
+	Bureaucrat(std::string _name);
+	Bureaucrat(std::string _name, int _grade);
 	Bureaucrat(const Bureaucrat &oth);
 	Bureaucrat& operator=(const Bureaucrat &var);
 	~Bureaucrat();
 
-	class GradeToHighException : public exception
+	class GradeTooHighException : public std::exception
 	{
 	public:
 		const char *what() const throw()
@@ -32,7 +27,7 @@ public:
 			return "Grade To High";
 		}	
 	};
-	class GradeToLowException : public exception
+	class GradeTooLowException : public std::exception
 	{
 	public:
 		const char *what() const throw()
@@ -43,10 +38,10 @@ public:
 
 	int 	getGrade() const;
 	void	setGrade(int _grade);
-	string	getName() const;
+	std::string	getName() const;
 	void	increment();
 	void	decrement();
 };
 
-ostream &operator<<(ostream &out, const Bureaucrat& var);
+std::ostream &operator<<(std::ostream &out, const Bureaucrat& var);
 #endif

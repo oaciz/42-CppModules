@@ -4,51 +4,47 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 
-using std::string;
 
 class Bureaucrat;
 
 class Form
 {
 private:
-	const string	name;
-	mutable bool	isSign;
-	int				requireToSign;
-	int				execToSign;
+	const std::string	name;
+	bool		isSign;
+	const int	requireToSign;
+	const int	execToSign;
 
 public:
-	class GradeToHighException : public std::exception
+	class GradeTooHighException : public std::exception
 	{
 		public:
 			const char *what() const throw()
 			{
-				return "Form Grade To High";
+				return "Couldn't signed because Bureaucrat's Grade To High";
 			}
 	};
-	class GradeToLowException : public std::exception
+	class GradeTooLowException : public std::exception
 	{
 		public:
 			const char *what() const throw()
 			{
-				return "Form Grade To Low";
+				return "Couldn't signed because Bureaucrat's Grade To Low";
 			}
 	};
 
 	Form();
-	Form(const string _name);
-	Form(const string _name, int _requireToSign, int _execToSign);
+	Form(const std::string _name);
+	Form(const std::string _name, int _requireToSign, int _execToSign);
 	Form(const Form &var);
 	~Form();
 	Form &operator=(const Form &var);
 
-	string getName() const;
+	std::string getName() const;
 	int getRequireToSign() const;
 	int	getExecToSign() const;
 
-	void	setRequireToSign(int _requireToSign);
-	void	setExecToSign(int _execToSign);
-
-	void	beSigned(const Bureaucrat &var) const;
+	void	beSigned(const Bureaucrat &var);
 	bool	isSigned() const;
 };
 std::ostream &operator<<(std::ostream &out , const Form& var);

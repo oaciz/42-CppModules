@@ -1,27 +1,35 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(): AForm("Default", 145, 137),_target("Default Target") {}
+ShrubberyCreationForm::ShrubberyCreationForm(): AForm("Default", 145, 137),_target("Default Target") {
+	std::cout << "Shru Const Called" << std::endl;
+}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target_):AForm("Default", 145, 137),_target(target_) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target_):AForm("Default", 145, 137),_target(target_) {
+	std::cout << "Target Const Called" << std::endl;
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &var):AForm("ShrubberyCreationForm", 145, 137), _target(var.getTarget()) {
+	std::cout << "Copy Const Called" << std::endl;
 	*this = var;
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm(){}
+
+ShrubberyCreationForm::~ShrubberyCreationForm(){
+	std::cout << this->getName() << " Deconst called" << std::endl;
+}
 
 std::string ShrubberyCreationForm::getTarget() const{
 	return this->_target;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &var) {
+	std::cout << "ShrubberyCreationForm Assignation operator called" << std::endl;
 	if (this == &var)
 		return *this;
 	return *this;
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
-	std::cout << "get grade: " << executor.getGrade() << " get exec: " << this->getExec() << std::endl;
 	if((int)executor.getGrade() > this->getExec())
 		throw (Bureaucrat::GradeTooLowException());
 	else if (this->isSigned() == false){

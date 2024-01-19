@@ -6,8 +6,6 @@
 #include <cstdlib>
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
-#include  <ctime>
-
 
 class Bureaucrat;
 class AForm;
